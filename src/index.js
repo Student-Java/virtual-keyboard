@@ -24,6 +24,11 @@ content.append(keyboard);
 const disclaimer = document.createElement('div');
 disclaimer.classList.add('disclaimer');
 disclaimer.innerText = 'Left Ctrl + Shift - переключить язык';
+const localStorage = window.localStorage;
+if (localStorage.getItem('lang')) {
+  state.lang = localStorage.getItem('lang')
+}
+
 content.append(disclaimer);
 
 'click'.split(' ')
@@ -179,6 +184,7 @@ const changeLang = code => {
   if (state.shift && state.ControlLeft &&
     (code === 'Shift' || code === 'ControlLeft')) {
     state.lang = (state.lang === defaultValues.lang ? defaultValues.altLang : defaultValues.lang);
+    localStorage.setItem('lang', state.lang);
   }
 };
 
