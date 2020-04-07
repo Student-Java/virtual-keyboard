@@ -104,27 +104,12 @@ const normalizeShift = code => code.indexOf('Shift') !== -1 ? 'Shift' : code;
 
 const extractCode = e => normalizeShift(e.detail ? e.detail.code : e.code);
 
-const doSpecialAction = code => {
-  switch (code) {
-    case 'Backspace':
-      state.start -= 1;
-      return '';
-    case 'Delete':
-      state.end += 1;
-      return '';
-    case 'ArrowLeft':
-      state.start -= 1;
-      state.end -= 1;
-      return;
-    case 'ArrowRight':
-      state.start += 1;
-      state.end += 1;
-      return;
-  }
+const applyChangesToTextarea = symbol => {
+  textarea.value = `${textarea.value.slice(0, state.start)}${symbol}${textarea.value.slice(state.end)}`;
 };
 
-const doKeyAction = code => {
-  let symbol;
+const doSpecialAction = code => {
+  let symbol = '';
   switch (code) {
     case 'Space':
       symbol = ' ';
@@ -135,21 +120,52 @@ const doKeyAction = code => {
     case 'Enter':
       symbol = '\n';
       break;
+    case 'Backspace':
+      state.start = state.start !== state.end ? state.start : state.start - 1;
+      state.start = state.start < 0 ? 0 : state.start;
+      break;
+    case 'Delete':
+      state.end = state.start !== state.end ? state.end : state.end + 1;
+      break;
+    case 'ArrowLeft':
+      state.start -= 1;
+      state.end = state.start;
+      return;
+    case 'ArrowRight':
+      state.start += 1;
+      state.end = state.start;
+      return;
     default:
-      if (config[code].special) {
-        symbol = doSpecialAction(code);
-      } else {
-        symbol = document.querySelector(`#${code} > span`).innerText;
-      }
+      console.error('Unknown key code');
+      return;
   }
 
-  if (symbol !== undefined) {
-    // debugger
-    textarea.value = `${textarea.value.slice(0, state.start)}${symbol}${textarea.value.slice(state.end)}`;
+  applyChangesToTextarea(symbol)
+  const length = textarea.value.length;
+
+  if (symbol) {
     state.start += 1;
     state.end = state.start;
+  } else if (code === 'Backspace'){
+    state.start = state.start > length ? length : state.start;
+    state.end = state.start;
+  } else if (code === 'Delete'){
+    state.start = state.start > length ? length : state.start;
+    state.end = state.start;
   }
+};
 
+const doKeyAction = code => {
+  if (config[code].special) {
+    doSpecialAction(code);
+  } else {
+    const symbol = document.querySelector(`#${code} > span`).innerText;
+    if (symbol !== undefined) {
+      applyChangesToTextarea(symbol);
+      state.start += 1;
+      state.end = state.start;
+    }
+  }
 };
 
 body.addEventListener('keydown', (e) => {

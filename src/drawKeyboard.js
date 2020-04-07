@@ -18,8 +18,6 @@ export const drawKeyboard = parentElement => {
 
     parentElement.append(rowDiv);
   }
-
-  console.log(parentElement);
 }
 
 const createButton = ({id, width}) => {
