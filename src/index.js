@@ -62,7 +62,6 @@ keyboard.addEventListener('mousedown', (e) => {
     target.addEventListener(
       'mouseup',
       () => {
-        // window.clearInterval(interval);
         fireKeyEvent(target, 'keyup');
       },
       false
@@ -145,6 +144,7 @@ const doKeyAction = code => {
   }
 
   if (symbol !== undefined) {
+    // debugger
     textarea.value = `${textarea.value.slice(0, state.start)}${symbol}${textarea.value.slice(state.end)}`;
     state.start += 1;
     state.end = state.start;
@@ -154,12 +154,10 @@ const doKeyAction = code => {
 
 body.addEventListener('keydown', (e) => {
   const code = extractCode(e);
-
-/*
+  e.stopPropagation();
   if (!e.metaKey) {
     e.preventDefault();
   }
-*/
 
   if (!Object.keys(config).some(k => k === code)) {
     return;
