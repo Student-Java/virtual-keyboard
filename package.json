@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Student-Java/virtual-keyboard/issues"
   },
-  "homepage": "https://github.com/Student-Java/virtual-keyboard#readme"
+  "homepage": "https://github.com/Student-Java/virtual-keyboard#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
 }
