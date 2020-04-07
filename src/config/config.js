@@ -60,20 +60,21 @@ export const config = {
   Delete: {en: 'DEL', ru: 'DEL', special: true},
   Enter: {en: 'Enter', ru: 'Enter', special: true},
   MetaLeft: {en: 'Win', ru: 'Win', special: true},
-  ShiftLeft: {en: 'Shift', ru: 'Shift', special: true},
-  ShiftRight: {en: 'Shift', ru: 'Shift', special: true},
+  Shift: {en: 'Shift', ru: 'Shift', special: true},
   Tab: {en: 'Tab', ru: 'Tab', special: true}
 };
 
 export const layout = [
   ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', ['Backspace', 2]],
-  [['Tab', 1.2], 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
+  [['Tab', 2], 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash'],
   [['CapsLock', 2], 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', ['Enter', 2]],
-  [['ShiftLeft', 2], 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
-  [['ControlLeft', 1.5], 'MetaLeft', 'AltLeft', ['Space', 5.35], 'AltRight', ['ControlRight', 1.5], 'ArrowLeft', 'ArrowDown', 'ArrowRight'],
+  [['Shift', 2], 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'Delete'],
+  [['ControlLeft', 2], ['MetaLeft', 1.5], ['AltLeft', 1.5], ['Space', 3.35], ['AltRight', 1.5], ['ControlRight', 1.5], 'ArrowLeft', 'ArrowDown', 'ArrowRight'],
 ];
 
 export const defaultValues = {
   buttonMinWidth: 10,
-  buttonWidth: 4
+  buttonWidth: 4,
+  lang: 'en',
+  altLang: 'ru'
 }
