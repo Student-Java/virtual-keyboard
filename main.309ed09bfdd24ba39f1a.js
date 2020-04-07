@@ -186,6 +186,10 @@
           return d.start -= 1, void (d.end = d.start);
         case'ArrowRight':
           return d.start += 1, void (d.end = d.start);
+        case'ArrowUp':
+          return d.start = 0, void (d.end = d.start);
+        case'ArrowDown':
+          return d.start = f.value.length, void (d.end = d.start);
         default:
           return
       }
