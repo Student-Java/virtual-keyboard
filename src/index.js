@@ -3,7 +3,6 @@ import { drawKeyboard } from './drawKeyboard';
 import { config, defaultValues } from './config/config';
 import { redrawLetters } from '@/renderLetters';
 
-
 const state = {
   CapsLock: false,
   shift: false,
@@ -19,24 +18,30 @@ const textarea = document.createElement('textarea');
 content.append(textarea);
 const keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
-keyboard.addEventListener('click', (e) => {
-  if (e.target.id) {
-    document
-      .querySelector('body')
-      .dispatchEvent(
-        new CustomEvent(
-          'keydown',
-          {
-            detail: {
-              code: e.target.id,
-              key: config[e.target.id].en
-            }
+
+
+function fireKeyDownEvent(e) {
+  document
+    .querySelector('body')
+    .dispatchEvent(
+      new CustomEvent(
+        'keydown',
+        {
+          detail: {
+            code: e.target.id,
+            key: config[e.target.id].en
           }
-        )
-      );
+        }
+      )
+    );
+}
+
+keyboard.addEventListener('mousedown', (e) => {
+  if (e.target.id) {
+    const interval = window.setInterval(() => fireKeyDownEvent(e), 30);
+    e.target.addEventListener('mouseup', () => window.clearInterval(interval), false);
   }
 });
-
 
 const onLoad = () => {
   content.append(keyboard);
