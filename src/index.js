@@ -135,6 +135,14 @@ const doSpecialAction = code => {
       state.start += 1;
       state.end = state.start;
       return;
+    case 'ArrowUp':
+      state.start = 0;
+      state.end = state.start;
+      return;
+    case 'ArrowDown':
+      state.start = textarea.value.length;
+      state.end = state.start;
+      return;
     default:
       return;
   }
