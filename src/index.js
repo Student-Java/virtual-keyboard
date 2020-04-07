@@ -108,9 +108,7 @@ body.addEventListener('keydown', (e) => {
     }
 
     activateButton(code);
-
     textarea.value = textarea.value + code + ' ';
-
     redrawLetters(state);
   }
 );
@@ -122,14 +120,12 @@ const changeLang = code => {
 };
 
 body.addEventListener('keyup', (e) => {
-    console.log(e);
     const code = extractCode(e);
     if (!Object.keys(config).some(k => k === code)) {
       return;
     }
 
     changeLang(code);
-
     if (code === 'Shift') {
       state.shift = false;
     } else if (code === 'ControlLeft') {
@@ -137,7 +133,6 @@ body.addEventListener('keyup', (e) => {
     }
 
     deactivateButton(code);
-
     redrawLetters(state);
   }
 );
