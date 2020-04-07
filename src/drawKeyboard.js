@@ -1,7 +1,7 @@
-import { config, defaultValues, layout } from './config/config';
+import { defaultValues, layout } from './config/config';
 
 
-export const drawKeyboard = (parentElement) => {
+export const drawKeyboard = parentElement => {
 
   parentElement.innerHTML = '';
   for (const layoutGroup of layout) {

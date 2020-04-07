@@ -46,7 +46,7 @@ export const config = {
   Semicolon: {en: [';', ':'], ru: 'ж'},
   Minus: {en: ['-', '_'], ru: ['-', '_']},
   Slash: {en: ['/', '?'], ru: ['.', ',']},
-  Space: {en: ' ', ru: ' '},
+  Space: {en: ' ', ru: ' ', special: true},
   AltLeft: {en: 'Alt', ru: 'Alt', special: true},
   AltRight: {en: 'Alt', ru: 'Alt', special: true},
   ArrowDown: {en: '∨', ru: '∨', special: true},
