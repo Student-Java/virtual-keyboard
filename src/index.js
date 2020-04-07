@@ -20,16 +20,16 @@ const keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
 
 
-function fireKeyDownEvent(e) {
+function fireKeyEvent(id, eventName) {
   document
     .querySelector('body')
     .dispatchEvent(
       new CustomEvent(
-        'keydown',
+        eventName,
         {
           detail: {
-            code: e.target.id,
-            key: config[e.target.id].en
+            code: id,
+            key: config[id].en
           }
         }
       )
@@ -37,9 +37,17 @@ function fireKeyDownEvent(e) {
 }
 
 keyboard.addEventListener('mousedown', (e) => {
-  if (e.target.id) {
-    const interval = window.setInterval(() => fireKeyDownEvent(e), 30);
-    e.target.addEventListener('mouseup', () => window.clearInterval(interval), false);
+  const target = e.target.tagName === 'SPAN' ? e.target.parentElement : e.target;
+  if (target.id) {
+    const interval = window.setInterval(() => fireKeyEvent(target.id, 'keydown'), 30);
+    target.addEventListener(
+      'mouseup',
+      () => {
+        window.clearInterval(interval);
+        fireKeyEvent(target.id, 'keyup');
+      },
+      false
+    );
   }
 });
 
@@ -65,7 +73,6 @@ const activateButton = code => {
     button.classList.add('active', 'autoflash');
     const flash = getFlash();
     button.append(flash);
-    console.log(flash);
   }
 };
 
@@ -115,6 +122,7 @@ const changeLang = code => {
 };
 
 body.addEventListener('keyup', (e) => {
+    console.log(e);
     const code = extractCode(e);
     if (!Object.keys(config).some(k => k === code)) {
       return;
