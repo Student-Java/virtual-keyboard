@@ -10,11 +10,11 @@ const state = {
   lang: defaultValues.lang,
   start: 0,
   end: 0
-}
+};
 
 const body = document.querySelector('body');
 const content = document.createElement('section');
-content.classList.add('content')
+content.classList.add('content');
 body.append(content);
 const textarea = document.createElement('textarea');
 content.append(textarea);
@@ -23,21 +23,20 @@ keyboard.classList.add('keyboard');
 content.append(keyboard);
 const disclaimer = document.createElement('div');
 disclaimer.classList.add('disclaimer');
-disclaimer.innerHTML = 'Left Ctrl + Shift - переключить язык<br>' +
-  'собранный проект в gh-pages. Огромная просьба оставлять развернутый комментарий и свой ник, спасибо!';
+disclaimer.innerHTML = 'Left Ctrl + Shift - переключить язык<br>'
+  + 'собранный проект в gh-pages. Огромная просьба оставлять развернутый комментарий и свой ник, спасибо!';
 const localStorage = window.localStorage;
 if (localStorage.getItem('lang')) {
-  state.lang = localStorage.getItem('lang')
+  state.lang = localStorage.getItem('lang');
 }
 
 content.append(disclaimer);
 
 'click'.split(' ')
   .forEach(evt => textarea.addEventListener(evt, (e) => {
-      state.start = e.target.selectionStart;
-      state.end = e.target.selectionEnd;
-    })
-  );
+    state.start = e.target.selectionStart;
+    state.end = e.target.selectionEnd;
+  }));
 
 const fireKeyEvent = (target, eventName) => {
   document
@@ -137,20 +136,19 @@ const doSpecialAction = code => {
       state.end = state.start;
       return;
     default:
-      console.error('Unknown key code');
       return;
   }
 
-  applyChangesToTextarea(symbol)
+  applyChangesToTextarea(symbol);
   const length = textarea.value.length;
 
   if (symbol) {
     state.start += 1;
     state.end = state.start;
-  } else if (code === 'Backspace'){
+  } else if (code === 'Backspace') {
     state.start = state.start > length ? length : state.start;
     state.end = state.start;
-  } else if (code === 'Delete'){
+  } else if (code === 'Delete') {
     state.start = state.start > length ? length : state.start;
     state.end = state.start;
   }
@@ -196,8 +194,8 @@ body.addEventListener('keydown', (e) => {
 });
 
 const changeLang = code => {
-  if (state.shift && state.ControlLeft &&
-    (code === 'Shift' || code === 'ControlLeft')) {
+  if (state.shift && state.ControlLeft
+    && (code === 'Shift' || code === 'ControlLeft')) {
     state.lang = (state.lang === defaultValues.lang ? defaultValues.altLang : defaultValues.lang);
     localStorage.setItem('lang', state.lang);
   }

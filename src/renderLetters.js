@@ -18,8 +18,7 @@ const getGliffFromConfig = (value, state) => {
 
 export const redrawLetters = state => {
   Object.entries(config).forEach(([key, value]) => {
-      const button = document.getElementById(key);
-      button.querySelector('span').innerText = getGliffFromConfig(value, state);
-    }
-  );
-}
+    const button = document.getElementById(key);
+    button.querySelector('span').innerText = getGliffFromConfig(value, state);
+  });
+};
