@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
@@ -10,7 +10,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const optimization = () => {
   const config = {
-    splitChunks: {chunks: 'all'}
+    splitChunks: { chunks: 'all' }
   };
 
   if (!isDev) {
@@ -32,7 +32,7 @@ const cssLoader = extra => {
       options: {
         hmr: isDev,
         reloadAll: true
-      },
+      }
     },
     'css-loader'
   ];
@@ -71,7 +71,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: {
-    main: ['./index.js'],
+    main: ['./index.js']
   },
   output: {
     filename: filename('js'),
@@ -110,4 +110,4 @@ module.exports = {
       }
     ]
   }
-}
+};

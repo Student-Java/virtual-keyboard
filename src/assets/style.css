@@ -1,0 +1,61 @@
+html {
+  font-size: 10px;
+  font-family: Roboto, Verdana, Arial, sans-serif;
+}
+
+textarea {
+  height: 20vw;
+  min-width: 300px;
+
+  font-size: 1vw;
+
+  resize: none;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .15);
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 60vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.keyboard {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row {
+  height: 4vw;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  margin: 3px;
+  min-width: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1vw;
+
+  user-select: none;
+
+  border: 1px solid lightgray;
+}
+
+textarea,
+.button {
+  border-radius: 1vw;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .15);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 191, 255, 0.4);
+}
