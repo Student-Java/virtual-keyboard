@@ -23,7 +23,8 @@ keyboard.classList.add('keyboard');
 content.append(keyboard);
 const disclaimer = document.createElement('div');
 disclaimer.classList.add('disclaimer');
-disclaimer.innerText = 'Left Ctrl + Shift - переключить язык';
+disclaimer.innerHTML = 'Left Ctrl + Shift - переключить язык<br>' +
+  'собранный проект в gh-pages. Огромная просьба оставлять развернутый комментарий и свой ник, спасибо!';
 const localStorage = window.localStorage;
 if (localStorage.getItem('lang')) {
   state.lang = localStorage.getItem('lang')
